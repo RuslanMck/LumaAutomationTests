@@ -12,7 +12,6 @@ public class HomePage {
 
     private SelenideElement signInButton = Selenide.$x("//header//ul[@class='header links']//a[text()[normalize-space() = 'Sign In']]");
 
-
     public void clickSignInButton(){
         signInButton.shouldBe(Condition.visible);
         signInButton.click();
