@@ -6,7 +6,9 @@ public enum ExpectedStrings {
     REGISTRATION_BUTTON_TEXT("Create an Account"),
     LOGIN_BLOCK_TITLE("Registered Customers"),
     FIELD_IS_REQUIRED("This is a required field."),
+    REGISTRATION_CONFIRMATION_MESSAGE("Thank you for registering with Main Website Store."),
     EMAIL_VALIDATION_MESSAGE("Please enter a valid email address (Ex: johndoe@domain.com).");
+
 
     private final String value;
 

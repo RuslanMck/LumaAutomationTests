@@ -3,12 +3,13 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import data.ExpactedLinksAddress;
 import lombok.Getter;
 
 @Getter
 public class LoginPage {
 
-    public String baseUrl = "http://46.101.147.48/customer/account/login/referer/aHR0cDovLzQ2LjEwMS4xNDcuNDgv/";
+    private String baseUrl = ExpactedLinksAddress.LOGIN_PAGE_URL.getValue();
 
     private SelenideElement pageTitle = Selenide.$("[data-ui-id='page-title-wrapper']");
     private SelenideElement loginBlock = Selenide.$(".login-container .block-customer-login");

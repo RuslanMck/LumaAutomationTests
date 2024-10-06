@@ -13,12 +13,13 @@ import steps.LoginPageSteps;
 public class LoginPageTests {
 
     private final LoginPageSteps LOGIN_PAGE_STEPS = new LoginPageSteps();
+    private final LoginPage LOGIN_PAGE = new LoginPage();
 
     @BeforeClass
     public void setUp(){
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
-        Selenide.open(new LoginPage().baseUrl);
+        Selenide.open(LOGIN_PAGE.getBaseUrl());
     }
 
     @Test(description = "Verify page hero title text")
@@ -93,6 +94,8 @@ public class LoginPageTests {
                 "Password input fields validation message does not match the designs");
 
         //TODO Add Steps and tests for email input field validation error message.
-        // The expected test already added to ExpectedStrings ENUM.
+        // The expected text already added to ExpectedStrings ENUM.
     }
+
+
 }

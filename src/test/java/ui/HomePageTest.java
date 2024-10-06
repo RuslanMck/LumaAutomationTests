@@ -30,7 +30,7 @@ public class HomePageTest {
         Assert.assertTrue(signInButtonIsVisible);
         HOME_PAGE_STEPS.clickSignInButton();
         String actualUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
-        String expectedUrl = new LoginPage().baseUrl;
+        String expectedUrl = LOGIN_PAGE.getBaseUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
     }
 }
