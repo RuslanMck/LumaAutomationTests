@@ -10,6 +10,12 @@ public class LoginPageSteps {
 
     private final LoginPage LOGIN_PAGE = new LoginPage();
 
+    public void login(String email, String password){
+        LOGIN_PAGE.enterEmail(email);
+        LOGIN_PAGE.enterPassword(password);
+        LOGIN_PAGE.clickLoginButton();
+    }
+
     @Step("Fetch the page title and ensure it is visible")
     public String fetchPageTitleForVerification(){
         LOGIN_PAGE.getPageTitle().shouldBe(Condition.visible);
@@ -104,6 +110,14 @@ public class LoginPageSteps {
         LOGIN_PAGE.clickLoginButton();
     }
 
+    @Step("Populate email field with {email}")
+    public void enterEmail(String email){
+        LOGIN_PAGE.enterEmail(email);
+    }
 
+    @Step("Populate password field with {password}")
+    public void enterPassword(String password){
+        LOGIN_PAGE.enterPassword(password);
+    }
 
 }

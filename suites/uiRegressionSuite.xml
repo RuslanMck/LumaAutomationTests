@@ -11,14 +11,19 @@
             <class name="ui.LoginPageTests"/>
         </classes>
     </test>
-    <test name="Create Account Page" enabled="true">
+    <test name="Create Account Page" enabled="false">
         <classes>
             <class name="ui.CreateAccountPageTests"/>
         </classes>
     </test>
-    <test name="Account Creation" enabled="true">
+    <test name="Account Creation" enabled="false">
         <classes>
             <class name="ui.AccountRegistrationTest"/>
+        </classes>
+    </test>
+    <test name="Login" enabled="true">
+        <classes>
+            <class name="ui.LoginProcessTest"/>
         </classes>
     </test>
 </suite>

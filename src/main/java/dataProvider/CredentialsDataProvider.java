@@ -35,7 +35,7 @@ public class CredentialsDataProvider {
 
     @DataProvider(name = "loginValidData")
     public Object[][] loginValidData(){
-        return new Object[][]{{VALID_LOGIN_EMAIL, VALID_PASSWORD}};
+        return new Object[][]{{VALID_LOGIN_EMAIL, VALID_PASSWORD, VALID_FIRSTNAME, VALID_LASTNAME}};
     }
 
 }

@@ -7,6 +7,7 @@ import data.ExpactedLinksAddress;
 import data.ExpectedStrings;
 import dataProvider.CredentialsDataProvider;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.CreateAccountPage;
@@ -20,15 +21,14 @@ public class AccountRegistrationTest {
     private final CustomerAccountPage CUSTOMER_ACCOUNT_PAGE = new CustomerAccountPage();
 
     @BeforeClass
-    public void setUp(){
+    public void setUp() {
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
         Selenide.open(CREATE_ACCOUNT_PAGE.getPageUrl());
     }
 
-    @Test(description = "Verify that user can register an account",
-            dataProviderClass = CredentialsDataProvider.class, dataProvider = "registrationValidData")
-    public void accountRegistration(String firstName, String lastName, String email, String password){
+    @Test(description = "Verify that user can register an account", dataProviderClass = CredentialsDataProvider.class, dataProvider = "registrationValidData")
+    public void accountRegistration(String firstName, String lastName, String email, String password) {
         CREATE_ACCOUNT_PAGE_STEPS.enterFirstName(firstName);
         CREATE_ACCOUNT_PAGE_STEPS.enterLastName(lastName);
         CREATE_ACCOUNT_PAGE_STEPS.enterEmail(email);
@@ -38,14 +38,24 @@ public class AccountRegistrationTest {
 
         String expectedUrl = ExpactedLinksAddress.CUSTOMER_ACCOUNT_PAGE.getValue();
         String actualUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
-        Assert.assertEquals(expectedUrl, actualUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "Customer account page URL does not match the expected value");
 
-        String expectedConfirmationMessage = "Thank you for registering with Main Website Store.";
-//        String expectedConfirmationMessage = ExpectedStrings.REGISTRATION_CONFIRMATION_MESSAGE.getValue();
-        System.out.println(expectedConfirmationMessage);
+        String expectedConfirmationMessage = ExpectedStrings.REGISTRATION_CONFIRMATION_MESSAGE.getValue();
         String actualConfirmationMessage = CUSTOMER_ACCOUNT_PAGE.getRegistrationConfirmationMessageText();
-        Assert.assertEquals(expectedConfirmationMessage, actualConfirmationMessage);
+        Assert.assertEquals(actualConfirmationMessage,expectedConfirmationMessage, "The registration confirmation message does not match the expected results");
 
 
+        String expectedWelcomeMessage = ExpectedStrings.HEADER_WELCOME_MESSAGE.getValue();
+        String actualWelcomeMessage = CUSTOMER_ACCOUNT_PAGE.getWelcomeMessageText();
+        Assert.assertEquals(actualWelcomeMessage,expectedWelcomeMessage + " " + firstName + " " + lastName + "!", "Header welcome message does not match the expected result");
+
+        //TODO add the logout process tests
+
+    }
+
+    @AfterClass
+    public void tierDown(){
+        CUSTOMER_ACCOUNT_PAGE.clickHeaderCustomerAccountButton();
+        CUSTOMER_ACCOUNT_PAGE.clickSignOutButton();
     }
 }

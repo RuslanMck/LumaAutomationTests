@@ -38,9 +38,10 @@ public class CreateAccountPageTests {
         String actualFirstName = CREATE_ACCOUNT_PAGE.getFirstNameInputFieldValue();
         String actualLastName = CREATE_ACCOUNT_PAGE.getLastNameInputFieldValue();
 
-        Assert.assertEquals(expectedFirstName, actualFirstName);
-        Assert.assertEquals(expectedLastName, actualLastName);
-        Assert.assertEquals(expectedEmail, actualEmail);
+        Assert.assertEquals(actualFirstName, expectedFirstName);
+        Assert.assertEquals(actualLastName, expectedLastName);
+        Assert.assertEquals(actualEmail, expectedEmail);
+
     }
 
 

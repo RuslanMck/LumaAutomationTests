@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 
 @Getter
-public class CustomerAccountPage {
+public class CustomerAccountPage extends BasicPageElements {
 
     private final String PAGE_URL = "http://46.101.147.48/customer/account/";
 

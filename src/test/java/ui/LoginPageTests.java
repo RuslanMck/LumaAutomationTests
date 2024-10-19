@@ -22,6 +22,10 @@ public class LoginPageTests {
         Selenide.open(LOGIN_PAGE.getBaseUrl());
     }
 
+    public void login(String email, String password){
+
+    }
+
     @Test(description = "Verify page hero title text")
     public void checkPageTitle(){
         String actualTitle = LOGIN_PAGE_STEPS.fetchPageTitleForVerification();

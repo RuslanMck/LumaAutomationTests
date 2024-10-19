@@ -59,5 +59,13 @@ public class LoginPage {
         loginButton.click();
     }
 
+    public void enterEmail(String email){
+        emailInputField.setValue(email);
+    }
+
+    public void enterPassword(String password){
+        passwordInputField.setValue(password);
+    }
+
 
 }

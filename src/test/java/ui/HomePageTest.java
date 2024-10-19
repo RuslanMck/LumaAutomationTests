@@ -31,6 +31,6 @@ public class HomePageTest {
         HOME_PAGE_STEPS.clickSignInButton();
         String actualUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
         String expectedUrl = LOGIN_PAGE.getBaseUrl();
-        Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "Sign in page URL does not match the expected value");
     }
 }
