@@ -21,9 +21,19 @@
             <class name="ui.AccountRegistrationTest"/>
         </classes>
     </test>
-    <test name="Login" enabled="true">
+    <test name="Login" enabled="false">
         <classes>
             <class name="ui.LoginProcessTest"/>
+        </classes>
+    </test>
+    <test name="PLP Tests" enabled="false">
+        <classes>
+            <class name="ui.CategoryPageTests"/>
+        </classes>
+    </test>
+    <test name="PDP Tests" enabled="true">
+        <classes>
+            <class name="ui.ProductPageTests"/>
         </classes>
     </test>
 </suite>

@@ -1,0 +1,30 @@
+package ui;
+
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import pages.ProductPage;
+import steps.ProductPageSteps;
+
+public class ProductPageTests {
+
+    private final ProductPage PRODUCT_PAGE = new ProductPage();
+    private final ProductPageSteps PRODUCT_PAGE_STEPS = new ProductPageSteps();
+
+    @BeforeClass
+    public void SetUp() {
+        Configuration.holdBrowserOpen = true;
+        Configuration.browserSize = "1920x1080";
+        Selenide.open(PRODUCT_PAGE.getBASE_URL());
+    }
+
+    @Test
+    public void addProductToTheCert(){
+        PRODUCT_PAGE_STEPS.selectSize("XS");
+        PRODUCT_PAGE_STEPS.selectColor("Gray");
+        PRODUCT_PAGE_STEPS.clickAddToCart();
+    }
+
+
+}

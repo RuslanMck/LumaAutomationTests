@@ -7,7 +7,7 @@ import data.ExpactedLinksAddress;
 import lombok.Data;
 
 @Data
-public class HomePage {
+public class HomePage extends BasicPageElements {
 
     private final String BASE_URL = ExpactedLinksAddress.HOMEPAGE_URL.getValue();
 

@@ -6,6 +6,8 @@ public enum ExpactedLinksAddress {
     LOGIN_PAGE_URL("http://46.101.147.48/customer/account/login/referer/aHR0cDovLzQ2LjEwMS4xNDcuNDgv/"),
     HOMEPAGE_URL("http://46.101.147.48/"),
     CREATE_ACCOUNT_PAGE("http://46.101.147.48/customer/account/create/"),
+    CATEGORY_PAGE("http://46.101.147.48/men.html"),
+    PRODUCT_PAGE("http://46.101.147.48/hero-hoodie.html"),
     CUSTOMER_ACCOUNT_PAGE("http://46.101.147.48/customer/account/");
 
     private final String value;
