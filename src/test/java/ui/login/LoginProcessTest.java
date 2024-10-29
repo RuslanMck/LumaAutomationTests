@@ -1,11 +1,9 @@
-package ui;
+package ui.login;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import data.ExpectedStrings;
 import dataProvider.CredentialsDataProvider;
-import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

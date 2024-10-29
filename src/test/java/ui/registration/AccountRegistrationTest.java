@@ -1,4 +1,4 @@
-package ui;
+package ui.registration;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -28,13 +28,14 @@ public class AccountRegistrationTest {
     }
 
     @Test(description = "Verify that user can register an account", dataProviderClass = CredentialsDataProvider.class, dataProvider = "registrationValidData")
-    public void accountRegistration(String firstName, String lastName, String email, String password) {
+    public void accountRegistration(String firstName, String lastName, String email, String password) throws InterruptedException {
         CREATE_ACCOUNT_PAGE_STEPS.enterFirstName(firstName);
         CREATE_ACCOUNT_PAGE_STEPS.enterLastName(lastName);
         CREATE_ACCOUNT_PAGE_STEPS.enterEmail(email);
         CREATE_ACCOUNT_PAGE_STEPS.enterPassword(password);
         CREATE_ACCOUNT_PAGE_STEPS.enterPasswordConfirmation(password);
         CREATE_ACCOUNT_PAGE_STEPS.clickCreateAccountButton();
+//        WebDriverRunner.getWebDriver().wait(1000);
 
         String expectedUrl = ExpactedLinksAddress.CUSTOMER_ACCOUNT_PAGE.getValue();
         String actualUrl = WebDriverRunner.getWebDriver().getCurrentUrl();

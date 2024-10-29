@@ -7,18 +7,23 @@ public class ProductPageSteps {
 
     private final ProductPage PRODUCT_PAGE = new ProductPage();
 
-    @Step
+    @Step("Click add to cart button")
     public void clickAddToCart(){
         PRODUCT_PAGE.clickAddToCartButton();
     }
 
-    @Step
+    @Step("Select the size of the product")
     public void selectSize(String size){
         PRODUCT_PAGE.selectSize(size);
     }
 
-    @Step
+    @Step("Select the color of the product")
     public void selectColor(String color){
         PRODUCT_PAGE.selectColor(color);
+    }
+
+    @Step("Verify that the add to cart confirmation is displayed")
+    public boolean addToCartConfirmationIsDisplayed(){
+        return PRODUCT_PAGE.addToCartConfirmationVisible();
     }
 }

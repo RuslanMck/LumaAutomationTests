@@ -20,8 +20,8 @@ public class CategoryPageTests {
         Selenide.open(CATEGORY_PAGE.getBASE_URL());
     }
 
-    @Test
+    @Test(description = "Verify that the user can navigate to the PDP")
     public void verifyNavigationToPDP(){
-        CATEGORY_PAGE_STEPS.clickOnProduct(0);
+        CATEGORY_PAGE_STEPS.clickOnProduct(1);
     }
 }

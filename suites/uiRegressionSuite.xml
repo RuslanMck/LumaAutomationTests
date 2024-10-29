@@ -3,27 +3,27 @@
 <suite name="Ui regression tests">
     <test name="Home Page" enabled="false">
         <classes>
-            <class name="ui.HomePageTest"/>
+            <class name="ui.home.HomePageTest"/>
         </classes>
     </test>
     <test name="Login Page" enabled="false">
         <classes>
-            <class name="ui.LoginPageTests"/>
+            <class name="ui.login.LoginPageTests"/>
         </classes>
     </test>
     <test name="Create Account Page" enabled="false">
         <classes>
-            <class name="ui.CreateAccountPageTests"/>
+            <class name="ui.registration.CreateAccountPageTests"/>
         </classes>
     </test>
     <test name="Account Creation" enabled="false">
         <classes>
-            <class name="ui.AccountRegistrationTest"/>
+            <class name="ui.registration.AccountRegistrationTest"/>
         </classes>
     </test>
     <test name="Login" enabled="false">
         <classes>
-            <class name="ui.LoginProcessTest"/>
+            <class name="ui.login.LoginProcessTest"/>
         </classes>
     </test>
     <test name="PLP Tests" enabled="false">
@@ -31,9 +31,14 @@
             <class name="ui.CategoryPageTests"/>
         </classes>
     </test>
-    <test name="PDP Tests" enabled="true">
+    <test name="PDP Tests" enabled="false">
         <classes>
             <class name="ui.ProductPageTests"/>
+        </classes>
+    </test>
+    <test name="Order placement test" enabled="true">
+        <classes>
+            <class name="ui.OrderPlacementTest"/>
         </classes>
     </test>
 </suite>

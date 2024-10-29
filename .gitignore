@@ -168,3 +168,4 @@ buildNumber.properties
 hs_err_pid*
 /.idea/libraries/
 /allure-results/
+/build/reports/

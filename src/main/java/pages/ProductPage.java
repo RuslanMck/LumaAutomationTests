@@ -19,9 +19,14 @@ public class ProductPage {
     private SelenideElement colorSelectionBlock = Selenide.$x("//div[@class='swatch-attribute color']");
     private ElementsCollection colorSelectionButtons = Selenide.$$x("//div[@class='swatch-option color']");
     private ElementsCollection sizeSelectionButtons = Selenide.$$x("//div[@class='swatch-option text']");
+    private SelenideElement addToCartConfirmation = Selenide.$("[role='alert']");
 
     private final String BASE_URL = ExpactedLinksAddress.PRODUCT_PAGE.getValue();
 
+    public boolean addToCartConfirmationVisible(){
+        addToCartConfirmation.shouldBe(Condition.visible);
+        return addToCartConfirmation.is(Condition.have(Condition.text("You added")));
+    }
 
     public void clickAddToCartButton(){
         addToCartButton.shouldBe(Condition.visible);

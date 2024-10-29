@@ -8,7 +8,9 @@ public enum ExpactedLinksAddress {
     CREATE_ACCOUNT_PAGE("http://46.101.147.48/customer/account/create/"),
     CATEGORY_PAGE("http://46.101.147.48/men.html"),
     PRODUCT_PAGE("http://46.101.147.48/hero-hoodie.html"),
-    CUSTOMER_ACCOUNT_PAGE("http://46.101.147.48/customer/account/");
+    CUSTOMER_ACCOUNT_PAGE("http://46.101.147.48/customer/account/"),
+    ORDER_CONFIRMATION_PAGE("http://46.101.147.48/checkout/onepage/success/"),
+    CHECKOUT_PAGE("http://46.101.147.48/checkout");
 
     private final String value;
 

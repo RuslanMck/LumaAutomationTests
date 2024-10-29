@@ -24,7 +24,7 @@ public class HomePageSteps {
         return HOME_PAGE.getNavigationBlockCategoriesTitles();
     }
 
-    public void navigateToTopCategory(String categoryName){
-        HOME_PAGE.navigateToCategory(categoryName);
-    }
+
+
+
 }

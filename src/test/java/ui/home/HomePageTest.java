@@ -1,10 +1,9 @@
-package ui;
+package ui.home;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -42,12 +41,6 @@ public class HomePageTest {
         List<String> expectedCategoriesNames = Arrays.asList("Women", "Men", "Gear", "Training", "Sale", "Test");
         List<String> actualCategoriesNames = HOME_PAGE_STEPS.fetchNavigationManuCategoriesNames();
         Assert.assertEquals(expectedCategoriesNames, actualCategoriesNames);
-    }
-
-    @Test
-    public void navigateTest(){
-        HOME_PAGE_STEPS.navigateToTopCategory("Men");
-        WebDriverRunner.getWebDriver().navigate().to(HOME_PAGE.getBASE_URL());
     }
 
 }

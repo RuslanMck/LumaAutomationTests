@@ -11,6 +11,7 @@ public enum ExpectedStrings {
     LOGIN_BLOCK_TITLE("Registered Customers"),
     HEADER_WELCOME_MESSAGE("Welcome,"),
     FIELD_IS_REQUIRED("This is a required field."),
+    ORDER_CONFIRMATION_PAGE_TITLE("Thank you for your purchase!"),
     EMAIL_VALIDATION_MESSAGE("Please enter a valid email address (Ex: johndoe@domain.com).");
 
 

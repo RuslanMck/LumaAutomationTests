@@ -19,12 +19,10 @@ public class ProductPageTests {
         Selenide.open(PRODUCT_PAGE.getBASE_URL());
     }
 
-    @Test
+    @Test(description = "Verify that the user can add product to the cart")
     public void addProductToTheCert(){
         PRODUCT_PAGE_STEPS.selectSize("XS");
         PRODUCT_PAGE_STEPS.selectColor("Gray");
         PRODUCT_PAGE_STEPS.clickAddToCart();
     }
-
-
 }

@@ -1,4 +1,4 @@
-package ui;
+package ui.registration;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;

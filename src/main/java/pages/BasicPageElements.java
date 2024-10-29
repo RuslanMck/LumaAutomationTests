@@ -1,11 +1,10 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,13 +16,27 @@ public class BasicPageElements {
     private SelenideElement headerWelcomeMessage = Selenide.$(".logged-in");
     private SelenideElement headerSignOutButton = Selenide.$x("//div[@class='customer-menu']//a[normalize-space(text())='Sign Out']");
     private SelenideElement navigationBlock = Selenide.$(".navigation");
+    private SelenideElement signInButton = Selenide.$x("//header//ul[@class='header links']//a[text()[normalize-space() = 'Sign In']]");
     private ElementsCollection navigationBlockCategories = Selenide.$$x("//li[contains(@class, 'level-top')]");
+    private SelenideElement miniCartButton = Selenide.$("[data-block='minicart']");
+    private SelenideElement miniCartCheckoutButton = Selenide.$("#top-cart-btn-checkout");
 
 
     public String getWelcomeMessageText(){
         headerWelcomeMessage.shouldBe(Condition.visible);
         return headerWelcomeMessage.text();
     }
+
+    public void clickMiniCartButton(){
+        miniCartButton.shouldBe(Condition.visible);
+        miniCartButton.click();
+    }
+
+    public void clickCheckoutButtonInMiniCart(){
+        miniCartCheckoutButton.shouldBe(Condition.visible, Duration.ofSeconds(5));
+        miniCartCheckoutButton.click();
+    }
+
 
     public boolean customerAccountHeaderButtonIsVisible(){
         headerAccountButton.shouldBe(Condition.visible);
@@ -33,6 +46,11 @@ public class BasicPageElements {
     public void clickHeaderCustomerAccountButton(){
         headerAccountButton.shouldBe(Condition.visible);
         headerAccountButton.click();
+    }
+
+    public void clickHeaderSignInButton(){
+        signInButton.shouldBe(Condition.visible);
+        signInButton.click();
     }
 
     public void clickSignOutButton(){
