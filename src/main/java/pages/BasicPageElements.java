@@ -23,8 +23,12 @@ public class BasicPageElements {
 
 
     public String getWelcomeMessageText(){
-        headerWelcomeMessage.shouldBe(Condition.visible);
+        headerWelcomeMessage.shouldBe(Condition.visible, Duration.ofSeconds(5));
         return headerWelcomeMessage.text();
+    }
+
+    public boolean getCustomerAccountButtonVisibility(){
+        return headerAccountButton.isDisplayed();
     }
 
     public void clickMiniCartButton(){
@@ -54,6 +58,8 @@ public class BasicPageElements {
     }
 
     public void clickSignOutButton(){
+        headerAccountButton.shouldBe(Condition.visible);
+        headerAccountButton.click();
         headerSignOutButton.shouldBe(Condition.visible);
         headerSignOutButton.click();
     }

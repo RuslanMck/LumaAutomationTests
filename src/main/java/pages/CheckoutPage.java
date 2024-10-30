@@ -15,6 +15,8 @@ public class CheckoutPage {
     private final SelenideElement FREE_SHIPPING_METHOD = Selenide.$("#label_method_bestway_tablerate");
     private SelenideElement nextButton = Selenide.$(".continue");
     private SelenideElement checkoutButton = Selenide.$(".checkout");
+    private SelenideElement productName = Selenide.$(".product-item-name");
+    private SelenideElement productListTab = Selenide.$(".items-in-cart");
 
     public void clickFreeShippingMethod(){
         FREE_SHIPPING_METHOD.shouldBe(Condition.visible, Duration.ofSeconds(5));
@@ -29,5 +31,12 @@ public class CheckoutPage {
     public void clickTheCheckoutButton(){
         checkoutButton.shouldBe(Condition.visible);
         checkoutButton.click();
+    }
+
+    public String getProductName(){
+        productListTab.shouldBe(Condition.visible);
+        productListTab.click();
+        productName.shouldBe(Condition.visible);
+        return productName.text();
     }
 }

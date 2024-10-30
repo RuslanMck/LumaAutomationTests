@@ -26,4 +26,9 @@ public class ProductPageSteps {
     public boolean addToCartConfirmationIsDisplayed(){
         return PRODUCT_PAGE.addToCartConfirmationVisible();
     }
+
+    @Step("Fetch the product name")
+    public String fetchProductName(){
+        return PRODUCT_PAGE.getProductName();
+    }
 }

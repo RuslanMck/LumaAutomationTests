@@ -9,7 +9,6 @@ public class OrderConfirmationPageSteps {
 
     @Step
     public String fetchPageTitle(){
-        ORDER_CONFIRMATION_PAGE.waitForPageLoading();
         return ORDER_CONFIRMATION_PAGE.getPageTitle();
     }
 

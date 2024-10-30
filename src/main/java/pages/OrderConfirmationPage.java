@@ -13,9 +13,11 @@ public class OrderConfirmationPage {
     private final String BASE_URL = ExpactedLinksAddress.ORDER_CONFIRMATION_PAGE.getValue();
     private SelenideElement pageTitle = Selenide.$(".page-title");
     private SelenideElement continueShoppingButton = Selenide.$(".continue");
+    private SelenideElement orderNumber = Selenide.$(".order-number");
 
     public String getPageTitle(){
         pageTitle.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        waitForPageLoading();
         return pageTitle.text();
     }
 
@@ -25,6 +27,7 @@ public class OrderConfirmationPage {
     }
 
     public void waitForPageLoading() {
+        orderNumber.shouldBe(Condition.visible);
         continueShoppingButton.shouldBe(Condition.visible);
     }
 

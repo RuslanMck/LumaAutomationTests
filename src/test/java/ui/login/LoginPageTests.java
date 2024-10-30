@@ -4,58 +4,52 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import data.ExpactedLinksAddress;
 import data.ExpectedStrings;
+import helpers.LoginPageAssertions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import steps.HeaderSteps;
 import steps.LoginPageSteps;
 
 public class LoginPageTests {
 
+    private final LoginPageAssertions LOGIN_PAGE_ASSERTIONS = new LoginPageAssertions();
     private final LoginPageSteps LOGIN_PAGE_STEPS = new LoginPageSteps();
     private final LoginPage LOGIN_PAGE = new LoginPage();
+    private final HeaderSteps HEADER_STEPS = new HeaderSteps();
 
     @BeforeClass
-    public void setUp(){
+    public void setUp() {
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
         Selenide.open(LOGIN_PAGE.getBaseUrl());
+        HEADER_STEPS.checkIfUserLoggedInAndLogout();
     }
 
-    public void login(String email, String password){
+    public void login(String email, String password) {
 
     }
 
     @Test(description = "Verify page hero title text")
-    public void checkPageTitle(){
+    public void checkPageTitle() {
         String actualTitle = LOGIN_PAGE_STEPS.fetchPageTitleForVerification();
         String expectedTitle = ExpectedStrings.LOGIN_PAGE_TITLE.getValue();
         Assert.assertEquals(actualTitle, expectedTitle);
     }
 
     @Test(description = "Verify registration block")
-    public void checkRegistrationBlock(){
-        boolean registrationBlockVisibility = LOGIN_PAGE_STEPS.isRegistrationBlockVisible();
-        Assert.assertTrue(registrationBlockVisibility, "Registration block is not visible for user.");
+    public void checkRegistrationBlock() {
 
-        String actualTitle = LOGIN_PAGE_STEPS.fetchRegistrationBlockTitleForVerification();
-        String expectedTitle = ExpectedStrings.REGISTRATION_BLOCK_TITLE.getValue();
-        Assert.assertEquals(actualTitle, expectedTitle, "Registration block title doesn't match the designs.");
-
-        boolean registrationButtonVisibility = LOGIN_PAGE_STEPS.isRegistrationButtonVisible();
-        Assert.assertTrue(registrationButtonVisibility, "Registration button is not visible for user.");
-
-        String actualButtonText = LOGIN_PAGE_STEPS.fetchRegistrationButtonTextForVerification();
-        String expectedButtonText = ExpectedStrings.REGISTRATION_BUTTON_TEXT.getValue();
-        Assert.assertEquals(actualButtonText, expectedButtonText, "Registration button text doesn't match the designs.");
-
-        String actualButtonLink = LOGIN_PAGE_STEPS.fetchRegistrationButtonLinkForVerification();
-        String expectedButtonLink = ExpactedLinksAddress.REGISTRATION_BUTTON.getValue();
-        Assert.assertEquals(actualButtonLink, expectedButtonLink, "Incorrect registration button link.");
+        LOGIN_PAGE_ASSERTIONS.assertRegistrationBlockVisibility(LOGIN_PAGE_STEPS);
+        LOGIN_PAGE_ASSERTIONS.assertLoginBlockTitle(LOGIN_PAGE_STEPS);
+        LOGIN_PAGE_ASSERTIONS.assertEmailInputVisibility(LOGIN_PAGE_STEPS);
+        LOGIN_PAGE_ASSERTIONS.assertRegistrationButtonVisibility(LOGIN_PAGE_STEPS);
+        LOGIN_PAGE_ASSERTIONS.assertRegistrationButtonLink(LOGIN_PAGE_STEPS);
     }
 
     @Test(description = "Verify login block")
-    public void checkLoginBlock(){
+    public void checkLoginBlock() {
         boolean loginBlockVisibility = LOGIN_PAGE_STEPS.isLoginBlockVisible();
         Assert.assertTrue(loginBlockVisibility, "Login block is not visible for user.");
 
@@ -83,19 +77,17 @@ public class LoginPageTests {
     }
 
     @Test(description = "Verify login input fields validation")
-    public void checkLoginFieldsValidation(){
+    public void checkLoginFieldsValidation() {
 
         new LoginPage().getEmailInputField().click();
         LOGIN_PAGE_STEPS.clickLoginButton();
         String actualEmailValidationMessageText = LOGIN_PAGE_STEPS.fetchEmailValidationMessageText();
         String expectedValidationMessageText = ExpectedStrings.FIELD_IS_REQUIRED.getValue();
-        Assert.assertEquals(actualEmailValidationMessageText,expectedValidationMessageText,
-                "Email input fields validation message does not match the designs");
+        Assert.assertEquals(actualEmailValidationMessageText, expectedValidationMessageText, "Email input fields validation message does not match the designs");
 
         String actualPasswordValidationMessageText = LOGIN_PAGE_STEPS.fetchEPasswordValidationMessageText();
         String expectedPasswordValidationMessageText = ExpectedStrings.FIELD_IS_REQUIRED.getValue();
-        Assert.assertEquals(actualPasswordValidationMessageText,expectedPasswordValidationMessageText,
-                "Password input fields validation message does not match the designs");
+        Assert.assertEquals(actualPasswordValidationMessageText, expectedPasswordValidationMessageText, "Password input fields validation message does not match the designs");
 
         //TODO Add Steps and tests for email input field validation error message.
         // The expected text already added to ExpectedStrings ENUM.

@@ -20,6 +20,7 @@ public class ProductPage {
     private ElementsCollection colorSelectionButtons = Selenide.$$x("//div[@class='swatch-option color']");
     private ElementsCollection sizeSelectionButtons = Selenide.$$x("//div[@class='swatch-option text']");
     private SelenideElement addToCartConfirmation = Selenide.$("[role='alert']");
+    private SelenideElement productName = Selenide.$("[itemprop='name']");
 
     private final String BASE_URL = ExpactedLinksAddress.PRODUCT_PAGE.getValue();
 
@@ -47,4 +48,10 @@ public class ProductPage {
         colorSelectionBlock.shouldBe(Condition.visible);
         ElementSelectionHelper.clickElementByAttribute("option-label","Gray", colorSelectionButtons);
     }
+
+    public String getProductName(){
+        return productName.text();
+    }
+
+
 }

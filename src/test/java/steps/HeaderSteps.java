@@ -26,4 +26,25 @@ public class HeaderSteps {
     public void navigateToCheckout(){
         BASIC_PAGE_ELEMENTS.clickCheckoutButtonInMiniCart();
     }
+
+    @Step("Fetch logged in user welcome message")
+    public String fetchLoginWelcomeMessage(){
+        return BASIC_PAGE_ELEMENTS.getWelcomeMessageText();
+    }
+
+    @Step("Sign out from the customer account")
+    public void signOutFromAccount(){
+        BASIC_PAGE_ELEMENTS.clickSignOutButton();
+    }
+
+    @Step("Verify if the user account button is visible")
+    public boolean isUserLoggedIn(){
+        return BASIC_PAGE_ELEMENTS.getCustomerAccountButtonVisibility();
+    }
+
+    public void checkIfUserLoggedInAndLogout(){
+        if (BASIC_PAGE_ELEMENTS.getCustomerAccountButtonVisibility()){
+            BASIC_PAGE_ELEMENTS.clickSignOutButton();
+        }
+    }
 }

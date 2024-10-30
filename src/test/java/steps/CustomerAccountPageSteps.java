@@ -27,4 +27,9 @@ public class CustomerAccountPageSteps {
     public void loggOutFormAccount(){
         CUSTOMER_ACCOUNT_PAGE.clickSignOutButton();
     }
+
+    @Step("Verify if the customer first and last name matches the expected value")
+    public boolean checkCustomerName(String expectedFirstName, String expectedLestName){
+        return CUSTOMER_ACCOUNT_PAGE.getContactBlockText(expectedFirstName, expectedLestName);
+    }
 }

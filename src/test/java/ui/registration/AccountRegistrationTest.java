@@ -13,12 +13,15 @@ import org.testng.annotations.Test;
 import pages.CreateAccountPage;
 import pages.CustomerAccountPage;
 import steps.CreateAccountPageSteps;
+import steps.HeaderSteps;
 
 public class AccountRegistrationTest {
 
     private final CreateAccountPageSteps CREATE_ACCOUNT_PAGE_STEPS = new CreateAccountPageSteps();
     private final CreateAccountPage CREATE_ACCOUNT_PAGE = new CreateAccountPage();
     private final CustomerAccountPage CUSTOMER_ACCOUNT_PAGE = new CustomerAccountPage();
+    private final HeaderSteps HEADER_STEPS = new HeaderSteps();
+
 
     @BeforeClass
     public void setUp() {
@@ -49,14 +52,10 @@ public class AccountRegistrationTest {
         String expectedWelcomeMessage = ExpectedStrings.HEADER_WELCOME_MESSAGE.getValue();
         String actualWelcomeMessage = CUSTOMER_ACCOUNT_PAGE.getWelcomeMessageText();
         Assert.assertEquals(actualWelcomeMessage,expectedWelcomeMessage + " " + firstName + " " + lastName + "!", "Header welcome message does not match the expected result");
-
-        //TODO add the logout process tests
-
     }
 
     @AfterClass
     public void tierDown(){
-        CUSTOMER_ACCOUNT_PAGE.clickHeaderCustomerAccountButton();
-        CUSTOMER_ACCOUNT_PAGE.clickSignOutButton();
+        HEADER_STEPS.checkIfUserLoggedInAndLogout();
     }
 }

@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.BasicPageElements;
 import pages.LoginPage;
+import steps.HeaderSteps;
 import steps.LoginPageSteps;
 
 public class LoginProcessTest {
@@ -16,12 +17,14 @@ public class LoginProcessTest {
     private final LoginPage LOGIN_PAGE = new LoginPage();
     private final LoginPageSteps LOGIN_PAGE_STEPS = new LoginPageSteps();
     private final BasicPageElements BASIC_PAGE_ELEMENTS = new BasicPageElements();
+    private final HeaderSteps HEADER_STEPS = new HeaderSteps();
 
     @BeforeClass
     public void setUp() {
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
         Selenide.open(LOGIN_PAGE.getBaseUrl());
+        HEADER_STEPS.checkIfUserLoggedInAndLogout();
     }
 
     @Test(description = "Verify that user can login to an existed account", dataProviderClass = CredentialsDataProvider.class, dataProvider = "loginValidData")
