@@ -7,15 +7,14 @@ import org.testng.annotations.Test;
 import pages.ProductPage;
 import steps.ProductPageSteps;
 
-public class ProductPageTests {
+public class ProductPageTests extends TestConfig{
 
     private final ProductPage PRODUCT_PAGE = new ProductPage();
     private final ProductPageSteps PRODUCT_PAGE_STEPS = new ProductPageSteps();
 
     @BeforeClass
     public void SetUp() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.browserSize = "1920x1080";
+        super.basicConfigs();
         Selenide.open(PRODUCT_PAGE.getBASE_URL());
     }
 

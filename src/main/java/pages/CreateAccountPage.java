@@ -11,12 +11,18 @@ public class CreateAccountPage {
 
     private final String pageUrl = ExpactedLinksAddress.CREATE_ACCOUNT_PAGE.getValue();
 
+    private SelenideElement pageTitle = Selenide.$("h1");
+
     private final SelenideElement firstNameInputField = Selenide.$("#firstname");
     private final SelenideElement lastNameInputField = Selenide.$("#lastname");
     private final SelenideElement emailInputField = Selenide.$("#email_address");
     private final SelenideElement passwordInputField = Selenide.$("#password");
     private final SelenideElement passwordConfirmationInputField = Selenide.$("#password-confirmation");
     private final SelenideElement createAccountButton = Selenide.$(".primary .submit");
+
+    public String getPageTitle(){
+        return pageTitle.text();
+    }
 
     public void populateFirstNameInputField(String firstName){
         firstNameInputField.shouldBe(Condition.visible);

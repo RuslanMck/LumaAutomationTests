@@ -11,10 +11,9 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import steps.*;
 
-public class OrderPlacementTest {
+public class OrderPlacementTest extends TestConfig{
 
     private final LoginPageAssertions LOGIN_PAGE_ASSERTIONS = new LoginPageAssertions();
-    private final CustomerAccountPageSteps CUSTOMER_ACCOUNT_PAGE_STEPS = new CustomerAccountPageSteps();
     private final LoginPageSteps LOGIN_PAGE_STEPS = new LoginPageSteps();
     private final CategoryPageSteps CATEGORY_PAGE_STEPS = new CategoryPageSteps();
     private final ProductPageSteps PRODUCT_PAGE_STEPS = new ProductPageSteps();
@@ -24,8 +23,7 @@ public class OrderPlacementTest {
 
     @BeforeClass
     public void setUp(){
-        Configuration.browserSize="1920x1080";
-        Configuration.holdBrowserOpen=true;
+        super.basicConfigs();
         Selenide.open(new HomePage().getBASE_URL());
         HEADER_STEPS.checkIfUserLoggedInAndLogout();
     }
@@ -44,7 +42,7 @@ public class OrderPlacementTest {
          * Login to the use account and verify that the user is logged in to the correct page
          */
         LOGIN_PAGE_STEPS.login(email, password);
-        Assert.assertTrue(CUSTOMER_ACCOUNT_PAGE_STEPS.checkCustomerName(firstName, lastName));
+        Assert.assertEquals(HEADER_STEPS.fetchLoginWelcomeMessage(), "Welcome, "+ firstName + " " + lastName +"!");
 
         HEADER_STEPS.navigateToTopCategory("Men");
         CATEGORY_PAGE_STEPS.clickOnProduct(1);

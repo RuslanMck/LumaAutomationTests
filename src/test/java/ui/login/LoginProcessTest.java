@@ -11,8 +11,9 @@ import pages.BasicPageElements;
 import pages.LoginPage;
 import steps.HeaderSteps;
 import steps.LoginPageSteps;
+import ui.TestConfig;
 
-public class LoginProcessTest {
+public class LoginProcessTest extends TestConfig {
 
     private final LoginPage LOGIN_PAGE = new LoginPage();
     private final LoginPageSteps LOGIN_PAGE_STEPS = new LoginPageSteps();
@@ -21,8 +22,7 @@ public class LoginProcessTest {
 
     @BeforeClass
     public void setUp() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
+        super.basicConfigs();
         Selenide.open(LOGIN_PAGE.getBaseUrl());
         HEADER_STEPS.checkIfUserLoggedInAndLogout();
     }

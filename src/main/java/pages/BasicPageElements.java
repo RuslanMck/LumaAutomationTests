@@ -62,6 +62,7 @@ public class BasicPageElements {
         headerAccountButton.click();
         headerSignOutButton.shouldBe(Condition.visible);
         headerSignOutButton.click();
+        headerAccountButton.shouldBe(Condition.disappear, Duration.ofSeconds(6));
     }
 
     public List<String> getNavigationBlockCategoriesTitles(){

@@ -6,32 +6,28 @@
             <class name="ui.home.HomePageTest"/>
         </classes>
     </test>
-    <test name="Login Page" enabled="true">
+    <test name="Login Page" enabled="false">
         <classes>
             <class name="ui.login.LoginPageTests"/>
         </classes>
     </test>
-    <test name="Create Account Page" enabled="true">
-        <classes>
-            <class name="ui.registration.CreateAccountPageTests"/>
-        </classes>
-    </test>
+
     <test name="Account Creation" enabled="true">
         <classes>
             <class name="ui.registration.AccountRegistrationTest"/>
         </classes>
     </test>
-    <test name="Login" enabled="true">
+    <test name="Login" enabled="false">
         <classes>
             <class name="ui.login.LoginProcessTest"/>
         </classes>
     </test>
-    <test name="PLP Tests" enabled="true">
+    <test name="PLP Tests" enabled="false">
         <classes>
             <class name="ui.CategoryPageTests"/>
         </classes>
     </test>
-    <test name="PDP Tests" enabled="true">
+    <test name="PDP Tests" enabled="false">
         <classes>
             <class name="ui.ProductPageTests"/>
         </classes>

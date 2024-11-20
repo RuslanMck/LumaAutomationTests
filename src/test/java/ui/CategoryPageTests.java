@@ -1,22 +1,19 @@
 package ui;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import io.qameta.allure.Step;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
 import steps.CategoryPageSteps;
 
-public class CategoryPageTests {
+public class CategoryPageTests extends TestConfig {
 
     private final CategoryPage CATEGORY_PAGE = new CategoryPage();
     private final CategoryPageSteps CATEGORY_PAGE_STEPS = new CategoryPageSteps();
 
     @BeforeClass
     public void setUp() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
+        super.basicConfigs();
         Selenide.open(CATEGORY_PAGE.getBASE_URL());
     }
 

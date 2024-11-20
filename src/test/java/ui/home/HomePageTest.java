@@ -1,6 +1,5 @@
 package ui.home;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.testng.Assert;
@@ -9,11 +8,12 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import steps.HomePageSteps;
+import ui.TestConfig;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class HomePageTest {
+public class HomePageTest extends TestConfig {
 
     private final HomePage HOME_PAGE = new HomePage();
     private final HomePageSteps HOME_PAGE_STEPS = new HomePageSteps();
@@ -21,8 +21,7 @@ public class HomePageTest {
 
     @BeforeClass
     public void setUp(){
-        Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen =true;
+        super.basicConfigs();
         Selenide.open(HOME_PAGE.getBASE_URL());
     }
 
