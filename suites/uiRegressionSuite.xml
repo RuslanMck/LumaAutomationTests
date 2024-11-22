@@ -37,6 +37,13 @@
             <class name="ui.OrderPlacementTest"/>
         </classes>
     </test>
+
+
+    <test name="iFrame Test" enabled="true">
+        <classes>
+            <class name="ui.IFrameTest"/>
+        </classes>
+    </test>
     <test name="iFrame Test" enabled="true">
         <classes>
             <class name="ui.IFrameTest"/>
