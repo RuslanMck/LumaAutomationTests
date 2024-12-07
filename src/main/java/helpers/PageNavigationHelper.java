@@ -13,7 +13,7 @@ public abstract class PageNavigationHelper {
      * @param element is SelenideElement to be scrolled to
      */
     public static void ScrollPageToElement(SelenideElement element){
-        ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
     }
 
     /**
@@ -25,8 +25,10 @@ public abstract class PageNavigationHelper {
      */
     public static void ScrollPageToLoadElement(SelenideElement element, int scrollDepth){
         while (!element.exists()){
+
             ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("window.scrollBy(0, "+scrollDepth+")");
-            Selenide.sleep(1000);
+
+            Selenide.sleep(scrollDepth);
         }
     }
 }

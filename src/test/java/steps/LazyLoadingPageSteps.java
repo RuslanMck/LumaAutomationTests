@@ -27,4 +27,5 @@ public class LazyLoadingPageSteps {
     public void scrollToLoadElement() {
         LAZY_LOADING_PAGE.scrollToProductFrame();
     }
+
 }

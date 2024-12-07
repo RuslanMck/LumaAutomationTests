@@ -62,4 +62,8 @@ public class LazyLoadingPage {
             PageNavigationHelper.ScrollPageToLoadElement(productFrame, 500);
         }
     }
+
+    public void focusOnSearchElement(){
+        PageNavigationHelper.ScrollPageToElement(productFrame);
+    }
 }

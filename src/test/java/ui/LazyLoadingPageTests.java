@@ -29,6 +29,8 @@ public class LazyLoadingPageTests extends TestConfig{
         isBlockExists = LAZY_LOADING_PAGE_STEPS.isProductFrameBlockExistsOnPage();
         Assert.assertTrue(isBlockExists);
 
+        LAZY_LOADING_PAGE.focusOnSearchElement();
+
     }
 
 }
