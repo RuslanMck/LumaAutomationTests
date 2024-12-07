@@ -11,9 +11,14 @@
             <class name="ui.AlertPageTests"/>
         </classes>
     </test>
-    <test name="Alerts test" enabled="true">
+    <test name="Alerts test" enabled="false">
         <classes>
             <class name="ui.FileUploadTest"/>
+        </classes>
+    </test>
+    <test name="Alerts test" enabled="true">
+        <classes>
+            <class name="ui.DragAndDropPageTests"/>
         </classes>
     </test>
 </suite>
