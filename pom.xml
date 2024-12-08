@@ -9,11 +9,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <testng.verrion>7.5.1</testng.verrion>
+        <testng.version>7.5.1</testng.version>
         <selenide.version>6.19.1</selenide.version>
         <surefire-plugin.version>3.5.0</surefire-plugin.version>
         <aspectj.version>1.9.20.1</aspectj.version>
@@ -33,6 +33,7 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+                    <release>11</release>
                 </configuration>
             </plugin>
 
@@ -71,7 +72,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.verrion}</version>
+            <version>${testng.version}</version>
         </dependency>
 
         <dependency>
