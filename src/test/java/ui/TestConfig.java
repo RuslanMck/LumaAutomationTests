@@ -34,7 +34,7 @@ public abstract class TestConfig {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    URI.create("http://185.47.134.16:4444/wd/hub").toURL(),
+                    URI.create("http://localhost:4444/wd/hub").toURL(),
                     capabilities
             );
         } catch (MalformedURLException e) {
