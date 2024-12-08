@@ -4,6 +4,9 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
+
+import java.net.URL;
 import java.util.Map;
 
 import java.net.MalformedURLException;
@@ -18,38 +21,42 @@ public abstract class TestConfig {
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
 
-        //This configuration is needed to run tests from Jenkins using Selenoid
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "chrome");
-        capabilities.setCapability("browserVersion", "104.0");
-
-        // Uses default version if not specified
-
-// Create a map for Selenoid-specific options
-        Map<String, Object> selenoidOptions = new HashMap<>();
-        selenoidOptions.put("enableVNC", true);  // Enable VNC for viewing browser sessions
-        selenoidOptions.put("enableVideo", true);  // Enable video recording
-
-        capabilities.setCapability("selenoid:options", selenoidOptions);
-
-// Create the RemoteWebDriver instance
-        RemoteWebDriver driver = null;
         try {
-            driver = new RemoteWebDriver(
-                    URI.create("http://172.18.0.3:4444/wd/hub").toURL(),
-                    capabilities
-            );
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("browserName", "chrome");
+            capabilities.setCapability("browserVersion", "104.0");
+            Map<String, Object> selenoidOptions = new HashMap<>();
+            selenoidOptions.put("enableVNC", true);
+            selenoidOptions.put("enableVideo", true);
+            capabilities.setCapability("selenoid:options", selenoidOptions);
+
+            // Log the capabilities being used
+            System.out.println("Capabilities: " + capabilities);
+
+            RemoteWebDriver driver = new RemoteWebDriver(new URL("http://172.18.0.3:4444/wd/hub"), capabilities);
+
+
+            // Log successful WebDriver initialization
+            System.out.println("WebDriver initialized successfully.");
+
+            WebDriverRunner.setWebDriver(driver);
+
+            // Open the URL
+            String testUrl = "https://www.marktplaats.nl/cp/537/witgoed-en-apparatuur/";
+            driver.get(testUrl);
+            Assert.assertEquals(driver.getCurrentUrl(), "https://www.marktplaats.nl/cp/537/witgoed-en-apparatuur/", "URL did not match!");
+
+            // Log the URL being opened
+            System.out.println("Opened URL: " + testUrl);
+
         } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            System.err.println("MalformedURLException occurred: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("An error occurred during WebDriver setup: " + e.getMessage());
         }
 
-// Set the WebDriver in Selenide
-        WebDriverRunner.setWebDriver(driver);
-
-// Example Test
-        driver.get("https://example.com");
-        System.out.println(driver.getTitle());
-        driver.quit();
 
     }
 }
