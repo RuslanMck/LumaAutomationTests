@@ -21,7 +21,7 @@ public abstract class TestConfig {
         //This configuration is needed to run tests from Jenkins using Selenoid
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "chrome");
-        capabilities.setCapability("browserVersion", "104.0");
+//        capabilities.setCapability("browserVersion", "104.0");
 
         // Create a regular map and populate it
         Map<String, Object> selenoidOptions = new HashMap<>();
