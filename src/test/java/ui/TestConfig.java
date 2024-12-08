@@ -20,7 +20,10 @@ public abstract class TestConfig {
 
         //This configuration is needed to run tests from Jenkins using Selenoid
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "chrome"); // Uses default version if not specified
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("browserVersion", "104.0");
+
+        // Uses default version if not specified
 
 // Create a map for Selenoid-specific options
         Map<String, Object> selenoidOptions = new HashMap<>();
@@ -33,7 +36,7 @@ public abstract class TestConfig {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    URI.create("http://localhost:4444/wd/hub").toURL(),
+                    URI.create("http://172.18.0.3:4444/wd/hub").toURL(),
                     capabilities
             );
         } catch (MalformedURLException e) {
