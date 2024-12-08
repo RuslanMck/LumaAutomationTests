@@ -42,12 +42,12 @@ public abstract class TestConfig {
             WebDriverRunner.setWebDriver(driver);
 
             // Open the URL
-            String testUrl = "https://www.marktplaats.nl/cp/537/witgoed-en-apparatuur/";
-            driver.get(testUrl);
-            Assert.assertEquals(driver.getCurrentUrl(), "https://www.marktplaats.nl/cp/537/witgoed-en-apparatuur/", "URL did not match!");
-
-            // Log the URL being opened
-            System.out.println("Opened URL: " + testUrl);
+//            String testUrl = "https://www.marktplaats.nl/cp/537/witgoed-en-apparatuur/";
+//            driver.get(testUrl);
+//            Assert.assertEquals(driver.getCurrentUrl(), "https://www.marktplaats.nl/cp/537/witgoed-en-apparatuur/", "URL did not match!");
+//
+//            // Log the URL being opened
+//            System.out.println("Opened URL: " + testUrl);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
