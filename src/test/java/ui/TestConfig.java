@@ -20,17 +20,16 @@ public abstract class TestConfig {
 
         //This configuration is needed to run tests from Jenkins using Selenoid
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "chrome");
-//        capabilities.setCapability("browserVersion", "104.0");
+        capabilities.setCapability("browserName", "chrome"); // Uses default version if not specified
 
-        // Create a regular map and populate it
+// Create a map for Selenoid-specific options
         Map<String, Object> selenoidOptions = new HashMap<>();
-        selenoidOptions.put("enableVNC", true);
-        selenoidOptions.put("enableVideo", true);
+        selenoidOptions.put("enableVNC", true);  // Enable VNC for viewing browser sessions
+        selenoidOptions.put("enableVideo", true);  // Enable video recording
 
-        // Set the capability to use the map
         capabilities.setCapability("selenoid:options", selenoidOptions);
 
+// Create the RemoteWebDriver instance
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
@@ -40,7 +39,14 @@ public abstract class TestConfig {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        //This WebDriverRunner configuration is needed for Selenoid use the exact driver that we identified above
+
+// Set the WebDriver in Selenide
         WebDriverRunner.setWebDriver(driver);
+
+// Example Test
+        driver.get("https://example.com");
+        System.out.println(driver.getTitle());
+        driver.quit();
+
     }
 }
