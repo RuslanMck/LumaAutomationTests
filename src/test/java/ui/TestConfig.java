@@ -21,7 +21,7 @@ public abstract class TestConfig {
         try {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("browserName", "chrome");
-            capabilities.setCapability("browserVersion", "latest");
+            capabilities.setCapability("browserVersion", "127.0");
             Map<String, Object> selenoidOptions = new HashMap<>();
             selenoidOptions.put("enableVNC", true);
             selenoidOptions.put("enableVideo", true);
