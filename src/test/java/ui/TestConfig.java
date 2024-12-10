@@ -27,7 +27,7 @@ public abstract class TestConfig {
             selenoidOptions.put("enableVideo", true);
             capabilities.setCapability("selenoid:options", selenoidOptions);
 
-            RemoteWebDriver driver = new RemoteWebDriver(new URL("http://172.18.0.3:4444/wd/hub"), capabilities);
+            RemoteWebDriver driver = new RemoteWebDriver(new URL("http://selenoid:4444/wd/hub"), capabilities);
 
             // Log to check if the WebDriver has successful initialization
             System.out.println("WebDriver initialized successfully.");
