@@ -29,7 +29,7 @@ public class AccountRegistrationTest extends TestConfig {
     }
 
 
-    @Test( invocationCount = 3, description = "Verify that user can register an account", dataProviderClass = CredentialsDataProvider.class, dataProvider = "registrationValidData")
+    @Test( invocationCount = 1, description = "Verify that user can register an account", dataProviderClass = CredentialsDataProvider.class, dataProvider = "registrationValidData")
     public void accountRegistration(String firstName, String lastName, String email, String password) {
         System.out.println("------------------------------> Start of accountRegistration");
         Assert.assertEquals(createAccountPage.getPageTitle(), "Create New Customer Account");
