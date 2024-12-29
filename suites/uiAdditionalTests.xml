@@ -1,27 +1,27 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="Ui additional tests">
-    <test name="iFrame Test" enabled="false">
+    <test name="iFrame Test" enabled="true">
         <classes>
             <class name="ui.IFrameTest"/>
         </classes>
     </test>
-    <test name="Alerts test" enabled="false">
+    <test name="Alerts test" enabled="true">
         <classes>
             <class name="ui.AlertPageTests"/>
         </classes>
     </test>
-    <test name="Alerts test" enabled="false">
+    <test name="Alerts test" enabled="true">
         <classes>
             <class name="ui.FileUploadTest"/>
         </classes>
     </test>
-    <test name="Alerts test" enabled="false">
+    <test name="Alerts test" enabled="true">
         <classes>
             <class name="ui.DragAndDropPageTests"/>
         </classes>
     </test>
-    <test name="Alerts test" enabled="true">
+    <test name="Lazy Loading Tests" enabled="true">
         <classes>
             <class name="ui.LazyLoadingPageTests"/>
         </classes>

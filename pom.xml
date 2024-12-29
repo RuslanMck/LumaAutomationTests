@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+        <suiteXmlFile>suites/uiRegressionSuite.xml</suiteXmlFile>
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -23,6 +23,7 @@
         <jackson.version>2.17.1</jackson.version>
         <rest-assured.version>5.5.0</rest-assured.version>
         <hamcrest.version>2.2</hamcrest.version>
+        <assertj.version>3.26.3</assertj.version>
     </properties>
 
     <build>
@@ -117,6 +118,12 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>${hamcrest.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
         </dependency>
 
 
