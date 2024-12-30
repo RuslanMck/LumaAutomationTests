@@ -8,10 +8,6 @@ public class ApiRequestBodies {
     private int emailAddressIncrement = EmailIncrementHelper.readEmailIncrement();
     private AddUserRequestDto userDto;
 
-    /**
-     *
-     */
-
     private void increaseIncrement() {
         emailAddressIncrement++;
         EmailIncrementHelper.writeEmailIncrement(emailAddressIncrement);

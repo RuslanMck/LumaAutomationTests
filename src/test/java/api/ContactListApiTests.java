@@ -1,85 +1,69 @@
 package api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import config.ApiConfig;
 import dataProvider.ApiRequestBodies;
 import dto.AddUserRequestDto;
 import dto.AddUserResponseWrapperDto;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
-import lombok.SneakyThrows;
-import org.assertj.core.api.Assertions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import steps.api.AddUserSteps;
 
+/**
+ * <h>API tests workflow</h>
+ * <br>
+ * <p>
+ *      <ol>
+ *          <li>
+ *              The <code>addNewUserAndGetToken()</code> test use the method
+ *              <code>apiRequestBodies.getAddUserRequestBody()</code> to receive the user data for request body.
+ *          </li>
+ *          <li>
+ *              Then we pass this user data into the {@link AddUserSteps#createUser(AddUserRequestDto)} method and
+ *              parse the response of the {@link AddUserSteps#createUser(AddUserRequestDto)} method to a variable
+ *              {@link #addUserAndReceiveTokenResponseBody}.
+ *          </li>
+ *          <li>
+ *              Inside the {@link AddUserSteps#createUser(AddUserRequestDto)} we rebuild the user data received from
+ *              the <code>apiRequestBodies.getAddUserRequestBody()</code> method to the <code>AddUserRequestDto</code>
+ *              data type and parse this object to {@link service.UserService#addUser(AddUserRequestDto)} method.
+ *          </li>
+ *          <li>
+ *              The {@link service.UserService#addUser(AddUserRequestDto)} method serialize the
+ *              <code>AddUserRequestDto</code> object to JSON format and performs the API request execution.
+ *          </li>
+ *          <li>
+ *              The response body of the request is deserialized from JSON into <code>AddUserResponseWrapperDto</code>
+ *              format and returned as a value of the {@link #addUserAndReceiveTokenResponseBody} variable in the
+ *              ContactListApiTests.class.
+ *          </li>
+ *      </ol>
+ *  </p>
+ * <p>
+ * <p>
+ */
+
 public class ContactListApiTests {
 
-    private String baseUrl = ApiConfig.BASE_URL;
     private String user_token;
     private ApiRequestBodies apiRequestBodies = new ApiRequestBodies();
-    private RequestSpecification requestSpecification;
-    private ObjectMapper objectMapper = new ObjectMapper();
     private final AddUserSteps addUserSteps = new AddUserSteps();
-
-    @BeforeClass
-    public void setup(){
-        requestSpecification = new RequestSpecBuilder()
-                .setBaseUri(baseUrl)
-                .addHeader("Content-Type", "application/json")
-                .build();
-    }
+    private AddUserResponseWrapperDto addUserAndReceiveTokenResponseBody;
 
     @Test
-    public void addNewUserAndGetToken(){
-        AddUserResponseWrapperDto response = addUserSteps.createUser(apiRequestBodies.getAddUserRequestBody());
+    public void addNewUserAndGetToken() {
+        AddUserRequestDto userDataForRequestBody = apiRequestBodies.getAddUserRequestBody();
 
-        Assert.assertNotNull(response.getUser().getUserId());
+        addUserAndReceiveTokenResponseBody = addUserSteps.createUser(userDataForRequestBody);
 
-        user_token = response.getToken();
+        Assert.assertNotNull(addUserAndReceiveTokenResponseBody.getUser().getUserId());
+
+        user_token = addUserAndReceiveTokenResponseBody.getToken();
 
         System.out.println("Response body: ");
-        System.out.println(response);
+        System.out.println(addUserAndReceiveTokenResponseBody);
         System.out.println("User token = " + user_token);
-        System.out.println("User first name = " + response.getUser().getFirstName());
-        System.out.println("User last name = " + response.getUser().getLastName());
-        System.out.println("User email = " + response.getUser().getEmail());
-        System.out.println("User id = " + response.getUser().getUserId());
+        System.out.println("User first name = " + addUserAndReceiveTokenResponseBody.getUser().getFirstName());
+        System.out.println("User last name = " + addUserAndReceiveTokenResponseBody.getUser().getLastName());
+        System.out.println("User email = " + addUserAndReceiveTokenResponseBody.getUser().getEmail());
+        System.out.println("User id = " + addUserAndReceiveTokenResponseBody.getUser().getUserId());
     }
-
-
-//    @Test
-//    @SneakyThrows
-//    public void addUserAndGetToken(){
-//
-//        AddUserRequestDto requestUserDto = apiRequestBodies.getAddUserRequestBody();
-//
-//        String responseBody = RestAssured
-//                .given()
-//                .spec(requestSpecification)
-//                .body(objectMapper.writeValueAsString(requestUserDto))
-//                .when()
-//                .post("/users")
-//                .then()
-//                .statusCode(201)
-//                .extract()
-//                .body()
-//                .asString();
-//
-//        AddUserResponseWrapperDto responseDto = objectMapper.readValue(responseBody, AddUserResponseWrapperDto.class);
-//
-//        Assertions
-//                .assertThat(responseDto.getUser())
-//                .usingRecursiveComparison()
-//                .ignoringFields("_id", "token")
-//                .isEqualTo(requestUserDto);
-//
-//        Assert.assertNotNull(responseDto.getToken(), "Token should not be null");
-//        Assert.assertFalse(responseDto.getToken().isEmpty(), "Token should not be empty");
-//
-//        user_token = responseDto.getToken();
-//
-//    }
 }

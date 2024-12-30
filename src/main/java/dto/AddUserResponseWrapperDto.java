@@ -3,6 +3,9 @@ package dto;
 import lombok.Data;
 
 /**
+ * Represents the full response body of the <b>"Add User"<b/> API, including both the <code>user</code> object and
+ * the <code>token</code>.
+ * Acts as a wrapper for <code>AddUserResponseDto</code>.
  * <p>This class is used to parse the response of the <b>"add user"</b> request correctly.</p>
  *
  * <p>The response contains two parts:</p>
