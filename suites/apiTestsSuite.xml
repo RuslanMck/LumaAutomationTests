@@ -3,7 +3,7 @@
 <suite name="API tests">
     <test name="Home Page" enabled="true">
         <classes>
-            <class name="ui.home.HomePageTest"/>
+            <class name="api.ContactListApiTests"/>
         </classes>
     </test>
 </suite>

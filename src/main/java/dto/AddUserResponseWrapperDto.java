@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * <p>This class is used to parse the response of the <b>"add user"</b> request correctly.</p>
  *
- * <p>The response contains two distinct parts:</p>
+ * <p>The response contains two parts:</p>
  * <ul>
  *   <li>A <code>user</code> object, which includes user details such as <code>firstName</code>,
  *   <code>lastName</code>, <code>email</code>, and <code>_id</code>.</li>
