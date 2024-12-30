@@ -3,6 +3,7 @@ package steps.api;
 import dto.AddUserRequestDto;
 import dto.AddUserResponseDto;
 import dto.AddUserResponseWrapperDto;
+import io.qameta.allure.Step;
 import service.UserService;
 
 public class AddUserSteps {
@@ -36,6 +37,7 @@ public class AddUserSteps {
      * @param userRequestDto
      * @return
      */
+    @Step("Add user to the contact list and receive token")
     public AddUserResponseWrapperDto createUser(AddUserRequestDto userRequestDto){
         AddUserRequestDto requestDto = AddUserRequestDto.builder()
                 .firstName(userRequestDto.getFirstName())

@@ -48,7 +48,7 @@ public class ContactListApiTests {
     private final AddUserSteps addUserSteps = new AddUserSteps();
     private AddUserResponseWrapperDto addUserAndReceiveTokenResponseBody;
 
-    @Test
+    @Test(description = "Verify that the user can be added to the contact list and user token can be received")
     public void addNewUserAndGetToken() {
         AddUserRequestDto userDataForRequestBody = apiRequestBodies.getAddUserRequestBody();
 
