@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AddUserResponseDto {
+public class UserResponseDto {
 
     private String firstName;
     private String lastName;

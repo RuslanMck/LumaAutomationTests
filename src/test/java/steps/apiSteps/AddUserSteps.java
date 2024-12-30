@@ -1,8 +1,9 @@
-package steps.api;
+package steps.apiSteps;
 
 import dto.AddUserRequestDto;
-import dto.AddUserResponseDto;
-import dto.AddUserResponseWrapperDto;
+import dto.LoginUserRequestDto;
+import dto.UserResponseDto;
+import dto.UserResponseWrapperDto;
 import io.qameta.allure.Step;
 import service.UserService;
 
@@ -38,7 +39,8 @@ public class AddUserSteps {
      * @return
      */
     @Step("Add user to the contact list and receive token")
-    public AddUserResponseWrapperDto createUser(AddUserRequestDto userRequestDto){
+    public UserResponseWrapperDto createUser(AddUserRequestDto userRequestDto) {
+
         AddUserRequestDto requestDto = AddUserRequestDto.builder()
                 .firstName(userRequestDto.getFirstName())
                 .lastName(userRequestDto.getLastName())
@@ -46,6 +48,24 @@ public class AddUserSteps {
                 .password(userRequestDto.getPassword())
                 .build();
 
-                return userService.addUser(requestDto);
+        return userService.addUser(requestDto);
     }
+
+    @Step("Receive user data using token")
+    public UserResponseDto receiveUserData(String token) {
+        return userService.getUser(token);
+    }
+
+    @Step("Login user")
+    public UserResponseWrapperDto loginUser(String email, String password){
+
+        LoginUserRequestDto requestDto = LoginUserRequestDto
+                .builder()
+                .email(email)
+                .password(password)
+                .build();
+
+        return userService.loginUser(requestDto);
+    }
+
 }

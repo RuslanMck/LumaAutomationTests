@@ -2,10 +2,13 @@ package api;
 
 import dataProvider.ApiRequestBodies;
 import dto.AddUserRequestDto;
-import dto.AddUserResponseWrapperDto;
+import dto.UserResponseDto;
+import dto.UserResponseWrapperDto;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import steps.api.AddUserSteps;
+import steps.apiSteps.AddUserSteps;
+
 
 /**
  * <h>API tests workflow</h>
@@ -46,24 +49,43 @@ public class ContactListApiTests {
     private String user_token;
     private ApiRequestBodies apiRequestBodies = new ApiRequestBodies();
     private final AddUserSteps addUserSteps = new AddUserSteps();
-    private AddUserResponseWrapperDto addUserAndReceiveTokenResponseBody;
+    private UserResponseWrapperDto addUserAndReceiveTokenResponseBody;
+    private AddUserRequestDto userDataForRequestBody = apiRequestBodies.getAddUserRequestBody();
+
 
     @Test(description = "Verify that the user can be added to the contact list and user token can be received")
     public void addNewUserAndGetToken() {
-        AddUserRequestDto userDataForRequestBody = apiRequestBodies.getAddUserRequestBody();
 
         addUserAndReceiveTokenResponseBody = addUserSteps.createUser(userDataForRequestBody);
 
         Assert.assertNotNull(addUserAndReceiveTokenResponseBody.getUser().getUserId());
 
         user_token = addUserAndReceiveTokenResponseBody.getToken();
-
-        System.out.println("Response body: ");
-        System.out.println(addUserAndReceiveTokenResponseBody);
-        System.out.println("User token = " + user_token);
-        System.out.println("User first name = " + addUserAndReceiveTokenResponseBody.getUser().getFirstName());
-        System.out.println("User last name = " + addUserAndReceiveTokenResponseBody.getUser().getLastName());
-        System.out.println("User email = " + addUserAndReceiveTokenResponseBody.getUser().getEmail());
-        System.out.println("User id = " + addUserAndReceiveTokenResponseBody.getUser().getUserId());
     }
+
+    @Test(description = "Verify that the user is existed in the database using the user token", dependsOnMethods = {"addNewUserAndGetToken"})
+    @Parameters({"user_token"})
+    public void getUserData() {
+        UserResponseDto getUserResponse = addUserSteps.receiveUserData(user_token);
+        Assert.assertEquals(getUserResponse.getUserId(), addUserAndReceiveTokenResponseBody.getUser().getUserId());
+        Assert.assertEquals(getUserResponse.getFirstName(), addUserAndReceiveTokenResponseBody.getUser().getFirstName());
+        Assert.assertEquals(getUserResponse.getLastName(), addUserAndReceiveTokenResponseBody.getUser().getLastName());
+        Assert.assertEquals(getUserResponse.getEmail(), addUserAndReceiveTokenResponseBody.getUser().getEmail());
+    }
+
+    @Test(description = "Verify that the user can be logged in", dependsOnMethods = {"addNewUserAndGetToken"})
+    @Parameters({"email", "password"})
+    public void loginUser(){
+        String email = userDataForRequestBody.getEmail();
+        String password = userDataForRequestBody.getPassword();
+
+        UserResponseWrapperDto loginUserResponse = addUserSteps.loginUser(email, password);
+
+        Assert.assertEquals(loginUserResponse.getUser().getFirstName(), userDataForRequestBody.getFirstName());
+        Assert.assertEquals(loginUserResponse.getUser().getEmail(), userDataForRequestBody.getEmail());
+
+    }
+
+    //TODO Add tests for update user password, test for login with old password, login with new password, user deletion
+
 }

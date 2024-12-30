@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * Represents the full response body of the <b>"Add User"<b/> API, including both the <code>user</code> object and
  * the <code>token</code>.
- * Acts as a wrapper for <code>AddUserResponseDto</code>.
+ * Acts as a wrapper for <code>UserResponseDto</code>.
  * <p>This class is used to parse the response of the <b>"add user"</b> request correctly.</p>
  *
  * <p>The response contains two parts:</p>
@@ -15,8 +15,8 @@ import lombok.Data;
  *   <li>A <code>token</code> field, which is separate from the <code>user</code> object.</li>
  * </ul>
  *
- * <p>Without this wrapper class, using only <code>AddUserResponseDto</code> would lead to a mismatch because
- * <code>AddUserResponseDto</code> expects a flat structure, but the actual response contains nested data:</p>
+ * <p>Without this wrapper class, using only <code>UserResponseDto</code> would lead to a mismatch because
+ * <code>UserResponseDto</code> expects a flat structure, but the actual response contains nested data:</p>
  *
  * <h3>Actual response structure:</h3>
  * <pre>
@@ -32,7 +32,7 @@ import lombok.Data;
  * }
  * </pre>
  *
- * <h3>AddUserResponseDto structure:</h3>
+ * <h3>UserResponseDto structure:</h3>
  * <pre>
  * {
  *   "firstName": "value",
@@ -41,14 +41,14 @@ import lombok.Data;
  * }
  * </pre>
  *
- * <p>By introducing <code>AddUserResponseWrapperDto</code>, we can correctly map the response structure
+ * <p>By introducing <code>UserResponseWrapperDto</code>, we can correctly map the response structure
  * to separate the <code>user</code> object and the <code>token</code> field.</p>
  */
 
 @Data
-public class AddUserResponseWrapperDto {
+public class UserResponseWrapperDto {
 
-    private AddUserResponseDto user;
+    private UserResponseDto user;
     private String token;
 
 }

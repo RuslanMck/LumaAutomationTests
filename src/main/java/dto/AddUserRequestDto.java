@@ -2,6 +2,7 @@ package dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
@@ -25,7 +26,8 @@ public class AddUserRequestDto {
     private String password;
 
     @JsonIgnore
-    private short _id;
+    @JsonProperty("_id")
+    private String userId;
     @JsonIgnore
     private String token;
 

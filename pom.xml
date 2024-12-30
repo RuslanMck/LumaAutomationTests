@@ -24,6 +24,7 @@
         <rest-assured.version>5.5.0</rest-assured.version>
         <hamcrest.version>2.2</hamcrest.version>
         <assertj.version>3.26.3</assertj.version>
+        <allure-rest-assured>2.29.1</allure-rest-assured>
     </properties>
 
     <build>
@@ -125,8 +126,11 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
-
-
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure-rest-assured}</version>
+        </dependency>
 
 
 
